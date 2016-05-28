@@ -4,18 +4,27 @@
 #
 Name     : R-png
 Version  : 0.1
-Release  : 25
+Release  : 26
 URL      : http://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Summary  : Read and write PNG images
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
+Requires: R-png-lib
 BuildRequires : clr-R-helpers
 BuildRequires : pkgconfig(libpng)
 BuildRequires : zlib-dev
 
 %description
 No detailed description available
+
+%package lib
+Summary: lib components for the R-png package.
+Group: Libraries
+
+%description lib
+lib components for the R-png package.
+
 
 %prep
 %setup -q -c -n png
@@ -25,13 +34,21 @@ No detailed description available
 %install
 rm -rf %{buildroot}
 export LANG=C
+export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
 R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library png
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=intel.com,localhost
+export no_proxy=localhost
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library png
 
@@ -58,5 +75,8 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 /usr/lib64/R/library/png/html/00Index.html
 /usr/lib64/R/library/png/html/R.css
 /usr/lib64/R/library/png/img/Rlogo.png
-/usr/lib64/R/library/png/libs/png.so
 /usr/lib64/R/library/png/libs/symbols.rds
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/R/library/png/libs/png.so
