@@ -4,7 +4,7 @@
 #
 Name     : R-png
 Version  : 0.1.7
-Release  : 33
+Release  : 34
 URL      : http://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Summary  : Read and write PNG images
@@ -30,12 +30,15 @@ lib components for the R-png package.
 %setup -q -c -n png
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1489129428
+export SOURCE_DATE_EPOCH=1492803217
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1489129428
+export SOURCE_DATE_EPOCH=1492803217
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -51,7 +54,7 @@ R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library png
 
@@ -61,6 +64,7 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 /usr/lib64/R/library/png/DESCRIPTION
 /usr/lib64/R/library/png/INDEX
 /usr/lib64/R/library/png/Meta/Rd.rds
+/usr/lib64/R/library/png/Meta/features.rds
 /usr/lib64/R/library/png/Meta/hsearch.rds
 /usr/lib64/R/library/png/Meta/links.rds
 /usr/lib64/R/library/png/Meta/nsInfo.rds
