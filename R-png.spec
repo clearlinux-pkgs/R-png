@@ -4,9 +4,9 @@
 #
 Name     : R-png
 Version  : 0.1.7
-Release  : 59
-URL      : http://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
-Source0  : http://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
+Release  : 60
+URL      : https://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Summary  : Read and write PNG images
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
@@ -33,10 +33,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552780962
+export SOURCE_DATE_EPOCH=1552934867
 
 %install
-export SOURCE_DATE_EPOCH=1552780962
+export SOURCE_DATE_EPOCH=1552934867
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
