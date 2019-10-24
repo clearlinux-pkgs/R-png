@@ -1,6 +1,5 @@
 # This file contains recursive sources that require this package
 R-base64enc
-R-httr
-R-knitr
+R-leaflet
 R-rvest
 R-tikzDevice
