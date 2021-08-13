@@ -4,7 +4,7 @@
 #
 Name     : R-png
 Version  : 0.1.7
-Release  : 77
+Release  : 78
 URL      : https://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/png_0.1-7.tar.gz
 Summary  : Read and write PNG images
